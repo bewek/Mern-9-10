@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
-import Practice from "./pages/Practice";
-
+import Practice from "./Practice";
 const UseEffect = () => {
   const [count, setCount] = useState(0);
   const [data, setData] = useState(0);

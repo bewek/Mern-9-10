@@ -1,15 +1,22 @@
-import Ref from "./pages/Ref";
-import UseEffect from "./pages/UseEffect";
+import { Route, Routes } from "react-router";
+import Home from "./pages/routePages/Home";
+import About from "./pages/routePages/About";
+import Login from "./pages/routePages/Login";
+import Navbar from "./pages/routePages/Navbar";
 
 const App = () => {
   return (
-    <div>
-      <h1>React Hooks</h1>
+    <>
+      <Navbar />
 
-      <UseEffect />
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/about" element={<About />} />
+        <Route path="/login" element={<Login />} />
 
-      <Ref />
-    </div>
+        <Route path="/*" element={<h1>Page Not FOund</h1>} />
+      </Routes>
+    </>
   );
 };
 
