@@ -8,6 +8,7 @@ import AboutContent from "./pages/nestedRoute/AboutContent";
 import AboutDetails from "./pages/nestedRoute/AboutDetails";
 import UserList from "./pages/user/UserList";
 import UserDetails from "./pages/user/UserDetails";
+import ApiUserList from "./pages/user/ApiUserList";
 
 const App = () => {
   return (
@@ -16,7 +17,8 @@ const App = () => {
         <Route element={<Navbar />}>
           <Route path="/" element={<Home />} />
           <Route path="/login" element={<Login />} />
-          <Route path="/users" element={<UserList />} />
+          {/* <Route path="/users" element={<UserList />} /> */}
+          <Route path="/users" element={<ApiUserList />} />
           <Route path="/users/:id/:name" element={<UserDetails />} />
         </Route>
 
