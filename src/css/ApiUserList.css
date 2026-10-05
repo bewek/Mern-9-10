@@ -1,0 +1,370 @@
+/* ================================
+   Page
+================================ */
+
+.user-page {
+  min-height: 100vh;
+  background-color: #f5f7fb;
+  padding: 40px;
+  box-sizing: border-box;
+  font-family:
+    Inter,
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    sans-serif;
+}
+
+/* ================================
+   Main Container
+================================ */
+
+.user-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  background-color: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+  overflow: hidden;
+}
+
+/* ================================
+   Header
+================================ */
+
+.user-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 28px;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.user-title {
+  margin: 0;
+  color: #111827;
+  font-size: 24px;
+  font-weight: 700;
+}
+
+.user-subtitle {
+  margin: 6px 0 0;
+  color: #6b7280;
+  font-size: 14px;
+}
+
+/* ================================
+   Add User Button
+================================ */
+
+.add-user-btn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+
+  padding: 11px 18px;
+
+  border: none;
+  border-radius: 8px;
+
+  background-color: #2563eb;
+  color: #ffffff;
+
+  font-size: 14px;
+  font-weight: 600;
+
+  cursor: pointer;
+
+  box-shadow: 0 2px 5px rgba(37, 99, 235, 0.25);
+
+  transition:
+    background-color 0.2s ease,
+    transform 0.2s ease;
+}
+
+.add-user-btn:hover {
+  background-color: #1d4ed8;
+  transform: translateY(-1px);
+}
+
+.add-user-btn:active {
+  transform: translateY(0);
+}
+
+.add-icon {
+  font-size: 18px;
+  line-height: 1;
+}
+
+/* ================================
+   Table Wrapper
+================================ */
+
+.table-wrapper {
+  padding: 24px 28px 28px;
+}
+
+.table-scroll {
+  width: 100%;
+  overflow-x: auto;
+}
+
+/* ================================
+   Table
+================================ */
+
+.user-table {
+  width: 100%;
+  min-width: 700px;
+  border-collapse: separate;
+  border-spacing: 0;
+}
+
+.user-table th {
+  padding: 14px 16px;
+
+  background-color: #f9fafb;
+
+  border-top: 1px solid #e5e7eb;
+  border-bottom: 1px solid #e5e7eb;
+
+  color: #6b7280;
+
+  font-size: 12px;
+  font-weight: 700;
+
+  text-align: left;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.user-table td {
+  padding: 16px;
+
+  border-bottom: 1px solid #f0f1f3;
+
+  font-size: 14px;
+}
+
+.user-table tbody tr {
+  transition: background-color 0.2s ease;
+}
+
+.user-table tbody tr:hover {
+  background-color: #f9fafb;
+}
+
+/* ================================
+   User ID
+================================ */
+
+.user-id {
+  color: #6b7280;
+  font-weight: 500;
+}
+
+/* ================================
+   User Name
+================================ */
+
+.user-name-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.user-avatar {
+  width: 38px;
+  height: 38px;
+
+  flex-shrink: 0;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 50%;
+
+  background-color: #dbeafe;
+  color: #2563eb;
+
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.user-name {
+  color: #111827;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+/* ================================
+   Age
+================================ */
+
+.user-age {
+  color: #374151;
+}
+
+/* ================================
+   Email
+================================ */
+
+.user-email {
+  color: #4b5563;
+}
+
+/* ================================
+   Actions
+================================ */
+
+.action-column {
+  text-align: center !important;
+}
+
+.action-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+}
+
+/* ================================
+   Edit Button
+================================ */
+
+.edit-btn {
+  padding: 7px 12px;
+
+  border: 1px solid #dbeafe;
+  border-radius: 6px;
+
+  background-color: #eff6ff;
+  color: #2563eb;
+
+  font-size: 13px;
+  font-weight: 600;
+
+  cursor: pointer;
+
+  transition: all 0.2s ease;
+}
+
+.edit-btn:hover {
+  background-color: #dbeafe;
+  border-color: #bfdbfe;
+}
+
+/* ================================
+   Delete Button
+================================ */
+
+.delete-btn {
+  padding: 7px 12px;
+
+  border: 1px solid #fee2e2;
+  border-radius: 6px;
+
+  background-color: #fef2f2;
+  color: #dc2626;
+
+  font-size: 13px;
+  font-weight: 600;
+
+  cursor: pointer;
+
+  transition: all 0.2s ease;
+}
+
+.delete-btn:hover {
+  background-color: #fee2e2;
+  border-color: #fecaca;
+}
+
+/* ================================
+   Loading State
+================================ */
+
+.loading-container {
+  padding: 60px 20px;
+  text-align: center;
+}
+
+.loading-title {
+  margin-bottom: 6px;
+
+  color: #374151;
+
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.loading-text {
+  color: #6b7280;
+  font-size: 14px;
+}
+
+/* ================================
+   Empty State
+================================ */
+
+.empty-container {
+  padding: 60px 20px;
+  text-align: center;
+}
+
+.empty-title {
+  margin-bottom: 6px;
+
+  color: #374151;
+
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.empty-text {
+  color: #6b7280;
+  font-size: 14px;
+}
+
+/* ================================
+   Responsive Design
+================================ */
+
+@media (max-width: 768px) {
+  .user-page {
+    padding: 20px;
+  }
+
+  .user-header {
+    padding: 20px;
+  }
+
+  .user-title {
+    font-size: 20px;
+  }
+
+  .user-subtitle {
+    font-size: 13px;
+  }
+
+  .add-user-btn {
+    padding: 9px 13px;
+  }
+
+  .table-wrapper {
+    padding: 20px;
+  }
+}
+
+@media (max-width: 600px) {
+  .user-header {
+    align-items: flex-start;
+    gap: 15px;
+    flex-direction: column;
+  }
+
+  .add-user-btn {
+    width: 100%;
+    justify-content: center;
+  }
+}
