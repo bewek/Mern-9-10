@@ -1,6 +1,7 @@
 import { useState } from "react";
 import "../../css/AddUser.css";
 import { useNavigate } from "react-router";
+import axios from "axios";
 
 const AddUser = () => {
   const navigate = useNavigate();
@@ -11,17 +12,29 @@ const AddUser = () => {
 
   const url = "http://localhost:3000/users";
 
-  const handleAdd = async () => {
-    const response = await fetch(url, {
-      method: "Post",
-      body: JSON.stringify({ name, age, email }),
-    });
-    const result = await response.json();
+  // const handleAdd = async () => {
+  //   let response = await fetch(url, {
+  //     method: "POST",
+  //     body: JSON.stringify({ name, age, email }),
+  //   });
+  //   response = await response.json();
 
-    if (result) {
-      //   alert("User added");
-      navigate("/users");
+  //   if (response) {
+  //     //   alert("User added");
+  //     console.log("user created");
+  //     navigate("/users");
+  //   }
+  // };
+  const handleAdd = async () => {
+    let response = await axios.post(url, {
+      name,
+      age,
+      email,
+    });
+
+    if (response) {
       console.log("user created");
+      navigate("/users");
     }
   };
   return (

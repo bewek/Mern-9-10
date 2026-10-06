@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import "../../css/ApiUserList.css";
 import { useNavigate } from "react-router";
+import axios from "axios";
 
 const ApiUserList = () => {
   const navigate = useNavigate();
@@ -14,15 +15,47 @@ const ApiUserList = () => {
     fetchUserData();
   }, []);
 
+  // const fetchUserData = async () => {
+  //   const response = await fetch(url);
+  //   const result = await response.json();
+  //   setData(result);
+  //   setLoading(false);
+  // };
   const fetchUserData = async () => {
-    const response = await fetch(url);
-    const result = await response.json();
-    setData(result);
+    const response = await axios.get(url);
+    console.log(response.data);
+    setData(response.data);
     setLoading(false);
   };
 
   const handleAdd = () => {
     navigate("/users/addUser");
+  };
+
+  // const handleDelete = async (id) => {
+  //   let response = await fetch(url + "/" + id, {
+  //     method: "Delete",
+  //   });
+  //   response = await response.json();
+
+  //   if (response) {
+  //     console.log("User Deleted");
+  //     fetchUserData();
+  //   }
+  // };
+
+  const handleDelete = async (id) => {
+    let response = await axios.delete(url + "/" + id);
+
+    if (response) {
+      console.log("User Deleted");
+      fetchUserData();
+    }
+  };
+
+  const handleEdit = (id) => {
+    console.log(id);
+    navigate(`/users/editUser/${id}`);
   };
 
   return (
@@ -67,7 +100,7 @@ const ApiUserList = () => {
                   </thead>
 
                   <tbody>
-                    {data.map((user) => (
+                    {data?.map((user) => (
                       <tr key={user.id}>
                         {/* ID */}
                         <td className="user-id">#{user.id}</td>
@@ -92,9 +125,19 @@ const ApiUserList = () => {
                         {/* Actions */}
                         <td className="action-column">
                           <div className="action-buttons">
-                            <button className="edit-btn">Edit</button>
+                            <button
+                              className="edit-btn"
+                              onClick={() => handleEdit(user.id)}
+                            >
+                              Edit
+                            </button>
 
-                            <button className="delete-btn">Delete</button>
+                            <button
+                              className="delete-btn"
+                              onClick={() => handleDelete(user.id)}
+                            >
+                              Delete
+                            </button>
                           </div>
                         </td>
                       </tr>
