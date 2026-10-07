@@ -6,7 +6,6 @@ import Navbar from "./pages/routePages/Navbar";
 import AboutTitle from "./pages/nestedRoute/AboutTitle";
 import AboutContent from "./pages/nestedRoute/AboutContent";
 import AboutDetails from "./pages/nestedRoute/AboutDetails";
-import UserList from "./pages/user/UserList";
 import UserDetails from "./pages/user/UserDetails";
 import ApiUserList from "./pages/user/ApiUserList";
 import AddUser from "./pages/user/AddUser";

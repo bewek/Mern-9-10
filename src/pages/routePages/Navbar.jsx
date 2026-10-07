@@ -1,6 +1,10 @@
+import { useSelector } from "react-redux";
 import { Link, NavLink, Outlet } from "react-router";
 
 const Navbar = () => {
+  const cartCount = useSelector((state) => state.cart.value);
+
+  console.log(cartCount);
   const navLinkStyle = ({ isActive }) => ({
     color: isActive ? "#fff" : "#000",
     backgroundColor: isActive ? "blue" : "transparent",
@@ -50,6 +54,44 @@ const Navbar = () => {
           <li>
             <NavLink to={"/users"} style={navLinkStyle}>
               Users
+            </NavLink>
+          </li>
+          <li>
+            <NavLink
+              to="/cart"
+              style={{
+                position: "relative",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                width: "45px",
+                height: "40px",
+                textDecoration: "none",
+                fontSize: "26px",
+                color: "#000",
+              }}
+            >
+              🛒
+              {/* Count */}
+              <span
+                style={{
+                  position: "absolute",
+                  top: "-2px",
+                  right: "-2px",
+                  backgroundColor: "red",
+                  color: "white",
+                  borderRadius: "50%",
+                  minWidth: "20px",
+                  height: "20px",
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  fontSize: "12px",
+                  fontWeight: "bold",
+                }}
+              >
+                {cartCount}
+              </span>
             </NavLink>
           </li>
         </ul>
