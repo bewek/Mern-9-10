@@ -1,107 +1,70 @@
-import { useDispatch } from "react-redux";
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchProducts } from "../../redux/product";
+import "../../css/Home.css";
 import { addItemToCart } from "../../redux/slice";
 
 const Home = () => {
   const dispatch = useDispatch();
-  const product = {
-    name: "Dell Inspiron 15",
-    variant: "Intel Core i5, 16GB RAM, 512GB SSD",
-    description:
-      "A powerful and reliable laptop perfect for work, study, programming, and everyday use.",
-    price: 799,
-    image: "https://images.unsplash.com/photo-1496181133206-80ce9b88a853",
-  };
+
+  useEffect(() => {
+    dispatch(fetchProducts());
+  }, [dispatch]);
+
+  const products = useSelector((state) => state.product.items);
+  const cartCount = useSelector((state) => state.cart.items);
 
   return (
-    <div
-      style={{
-        minHeight: "100vh",
-        backgroundColor: "#f5f5f5",
-        padding: "40px",
-      }}
-    >
-      {/* Product Card */}
-      <div
-        style={{
-          maxWidth: "900px",
-          margin: "0 auto",
-          backgroundColor: "#fff",
-          borderRadius: "12px",
-          padding: "25px",
-          display: "flex",
-          gap: "30px",
-          boxShadow: "0 4px 15px rgba(0, 0, 0, 0.1)",
-        }}
-      >
-        {/* Left - Image */}
-        <div
-          style={{
-            width: "45%",
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-          }}
-        >
-          <img
-            src={product.image}
-            alt={product.name}
-            style={{
-              width: "100%",
-              maxHeight: "300px",
-              objectFit: "contain",
-              borderRadius: "10px",
-            }}
-          />
-        </div>
+    <div className="home-container">
+      {/* Products Grid */}
+      <div className="products-grid">
+        {products.map((item) => (
+          <div className="product-card" key={item.id}>
+            {/* Product Image */}
+            <div className="product-image-container">
+              <img
+                src={item.thumbnail}
+                alt={item.title}
+                className="product-image"
+              />
+            </div>
 
-        {/* Right - Details */}
-        <div
-          style={{
-            width: "55%",
-            display: "flex",
-            flexDirection: "column",
-          }}
-        >
-          <h2 style={{ marginTop: 0 }}>{product.name}</h2>
+            {/* Product Details */}
+            <div className="product-details">
+              <p className="product-category">{item.category}</p>
 
-          <p>
-            <strong>Variant:</strong> {product.variant}
-          </p>
+              <h2 className="product-title">{item.title}</h2>
 
-          <p style={{ color: "#555", lineHeight: "1.6" }}>
-            <strong>Description:</strong> {product.description}
-          </p>
+              <p className="product-brand">Brand: {item.brand}</p>
 
-          <p>
-            <strong>Availability:</strong>{" "}
-            <span style={{ color: "green" }}>In Stock</span>
-          </p>
+              <div className="product-rating">
+                <span>{item.rating}</span>
+                <span className="rating-label">Customer rating</span>
+              </div>
 
-          <h2 style={{ color: "#e63946", marginTop: "10px" }}>
-            ${product.price}
-          </h2>
+              <div className="product-bottom">
+                <h3 className="product-price">
+                  ${Number(item.price).toFixed(2)}
+                </h3>
 
-          {/* Add To Cart */}
-          <button
-            onClick={() => {
-              console.log("Added");
-              dispatch(addItemToCart());
-            }}
-            style={{
-              marginTop: "auto",
-              padding: "12px 20px",
-              backgroundColor: "#007bff",
-              color: "white",
-              border: "none",
-              borderRadius: "6px",
-              fontSize: "16px",
-              fontWeight: "600",
-              cursor: "pointer",
-            }}
-          >
-            Add to Cart
-          </button>
-        </div>
+                <span className="product-stock">{item.stock} in stock</span>
+              </div>
+
+              {cartCount.find((cartData) => cartData.id === item.id) ? (
+                <button className="add-to-cart-btn-remove">
+                  Remove from Cart
+                </button>
+              ) : (
+                <button
+                  className="add-to-cart-btn"
+                  onClick={() => dispatch(addItemToCart(item))}
+                >
+                  Add to Cart
+                </button>
+              )}
+            </div>
+          </div>
+        ))}
       </div>
     </div>
   );

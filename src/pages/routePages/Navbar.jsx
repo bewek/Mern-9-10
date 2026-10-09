@@ -2,9 +2,11 @@ import { useSelector } from "react-redux";
 import { Link, NavLink, Outlet } from "react-router";
 
 const Navbar = () => {
-  const cartCount = useSelector((state) => state.cart.value);
+  const cartCount = useSelector((state) => state.cart.items);
 
+  console.log(cartCount.length);
   console.log(cartCount);
+
   const navLinkStyle = ({ isActive }) => ({
     color: isActive ? "#fff" : "#000",
     backgroundColor: isActive ? "blue" : "transparent",
@@ -90,7 +92,7 @@ const Navbar = () => {
                   fontWeight: "bold",
                 }}
               >
-                {cartCount}
+                {cartCount.length}
               </span>
             </NavLink>
           </li>
