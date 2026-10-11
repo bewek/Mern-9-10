@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { fetchProducts } from "../../redux/product";
 import "../../css/Home.css";
 import { addItemToCart } from "../../redux/slice";
+import { removeFromCart } from "../../redux/slice copy";
 
 const Home = () => {
   const dispatch = useDispatch();
@@ -51,7 +52,10 @@ const Home = () => {
               </div>
 
               {cartCount.find((cartData) => cartData.id === item.id) ? (
-                <button className="add-to-cart-btn-remove">
+                <button
+                  className="add-to-cart-btn-remove"
+                  onClick={() => dispatch(removeFromCart(item))}
+                >
                   Remove from Cart
                 </button>
               ) : (

@@ -10,6 +10,7 @@ import UserDetails from "./pages/user/UserDetails";
 import ApiUserList from "./pages/user/ApiUserList";
 import AddUser from "./pages/user/AddUser";
 import EditUser from "./pages/user/EditUser";
+import Cart from "./pages/routePages/Cart";
 
 const App = () => {
   return (
@@ -23,6 +24,8 @@ const App = () => {
           <Route path="/users/:id/:name" element={<UserDetails />} />
           <Route path="/users/addUser" element={<AddUser />} />
           <Route path="/users/editUser/:id" element={<EditUser />} />
+
+          <Route path="/cart" element={<Cart />} />
         </Route>
 
         <Route path="/about" element={<About />}>

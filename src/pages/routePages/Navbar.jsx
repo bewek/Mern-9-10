@@ -3,9 +3,7 @@ import { Link, NavLink, Outlet } from "react-router";
 
 const Navbar = () => {
   const cartCount = useSelector((state) => state.cart.items);
-
-  console.log(cartCount.length);
-  console.log(cartCount);
+  // console.log(cartCount);
 
   const navLinkStyle = ({ isActive }) => ({
     color: isActive ? "#fff" : "#000",
@@ -16,48 +14,65 @@ const Navbar = () => {
     fontWeight: isActive ? "600" : "400",
     transition: "all 0.2s ease",
   });
+
   return (
-    <>
-      <div
+    <div
+      style={{
+        height: "100vh",
+        display: "flex",
+        flexDirection: "column",
+        overflow: "hidden",
+      }}
+    >
+      {/* Fixed Header */}
+      <header
         style={{
           display: "flex",
           justifyContent: "space-between",
           alignItems: "center",
           padding: "10px",
           background: "lightBlue",
+          flexShrink: 0,
         }}
       >
-        <Link to={"/"} style={{ fontSize: "24px", fontWeight: "bold" }}>
+        <Link to="/" style={{ fontSize: "24px", fontWeight: "bold" }}>
           Logo
         </Link>
 
         <ul
           style={{
             display: "flex",
+            alignItems: "center",
             columnGap: "10px",
             listStyle: "none",
+            margin: 0,
+            padding: 0,
           }}
         >
           <li>
-            <NavLink to={"/"} style={navLinkStyle}>
+            <NavLink to="/" style={navLinkStyle}>
               Home
             </NavLink>
           </li>
+
           <li>
-            <NavLink to={"/about"} style={navLinkStyle}>
+            <NavLink to="/about" style={navLinkStyle}>
               About
             </NavLink>
           </li>
+
           <li>
-            <NavLink to={"/login"} style={navLinkStyle}>
+            <NavLink to="/login" style={navLinkStyle}>
               Login
             </NavLink>
           </li>
+
           <li>
-            <NavLink to={"/users"} style={navLinkStyle}>
+            <NavLink to="/users" style={navLinkStyle}>
               Users
             </NavLink>
           </li>
+
           <li>
             <NavLink
               to="/cart"
@@ -74,7 +89,6 @@ const Navbar = () => {
               }}
             >
               🛒
-              {/* Count */}
               <span
                 style={{
                   position: "absolute",
@@ -97,9 +111,20 @@ const Navbar = () => {
             </NavLink>
           </li>
         </ul>
-      </div>
-      <Outlet />
-    </>
+      </header>
+
+      {/* Only Outlet Content Scrolls */}
+      <main
+        style={{
+          flex: 1,
+          minHeight: 0,
+          overflowY: "auto",
+          overflowX: "hidden",
+        }}
+      >
+        <Outlet />
+      </main>
+    </div>
   );
 };
 
