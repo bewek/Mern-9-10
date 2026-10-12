@@ -1,40 +1,25 @@
 import { useState } from "react";
 import "../../css/AddUser.css";
 import { useNavigate } from "react-router";
-import axios from "axios";
+import { useDispatch } from "react-redux";
+import { addUser } from "../../redux/actions";
 
 const AddUser = () => {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const [name, setName] = useState("");
   const [age, setAge] = useState("");
   const [email, setEmail] = useState("");
 
-  const url = "http://localhost:3000/users";
-
-  // const handleAdd = async () => {
-  //   let response = await fetch(url, {
-  //     method: "POST",
-  //     body: JSON.stringify({ name, age, email }),
-  //   });
-  //   response = await response.json();
-
-  //   if (response) {
-  //     //   alert("User added");
-  //     console.log("user created");
-  //     navigate("/users");
-  //   }
-  // };
   const handleAdd = async () => {
-    let response = await axios.post(url, {
-      name,
-      age,
-      email,
-    });
+    const result = await dispatch(addUser({ name, age, email }));
 
-    if (response) {
-      console.log("user created");
+    if (result) {
+      alert("user added");
       navigate("/users");
+    } else {
+      alert("user not added");
     }
   };
   return (

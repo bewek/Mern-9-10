@@ -1,64 +1,43 @@
-import axios from "axios";
 import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router";
+import { fetchUserById, updateUser } from "../../redux/actions";
 
 const EditUser = () => {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
   const { id } = useParams();
-  console.log(id);
 
-  const url = `http://localhost:3000/users/${id}`;
+  const currentUser = useSelector((state) => state.user.currentUser);
 
   const [name, setName] = useState("");
   const [age, setAge] = useState("");
   const [email, setEmail] = useState("");
 
   useEffect(() => {
-    getUserData();
-  }, []);
+    dispatch(fetchUserById(id));
+  }, [dispatch, id]);
 
-  //   const getUserData = async () => {
-  //     let response = await fetch(url);
-  //     response = await response.json();
-  //     console.log(response);
-  //     setName(response.name);
-  //     setAge(response.age);
-  //     setEmail(response.email);
-  //   };
+  // once currentUser shows up in the store, fill the form fields with it
+  useEffect(() => {
+    if (currentUser) {
+      setName(currentUser.name);
+      setAge(currentUser.age);
+      setEmail(currentUser.email);
+    }
+  }, [currentUser]);
 
-  const getUserData = async () => {
-    let response = await axios.get(url);
-
-    console.log(response.data);
-    setName(response.data.name);
-    setAge(response.data.age);
-    setEmail(response.data.email);
-  };
-
-  //   const handleEdit = async () => {
-  //     let response = await fetch(url, {
-  //       method: "Put",
-  //       body: JSON.stringify({ name, age, email }),
-  //     });
-  //     response = await response.json();
-
-  //     if (response) {
-  //       console.log("User Updated");
-  //       navigate("/users");
-  //     }
-  //   };
   const handleEdit = async () => {
-    let response = await axios.put(url, {
-      name,
-      age,
-      email,
-    });
+    const result = await dispatch(
+      updateUser({ id, userData: { name, age, email } }),
+    );
 
-    if (response) {
-      console.log("User Updated");
+    if (result) {
+      alert("user updated");
       navigate("/users");
     }
   };
+
   return (
     <div className="add-user-page">
       <div className="add-user-card">
