@@ -11,6 +11,7 @@ import ApiUserList from "./pages/user/ApiUserList";
 import AddUser from "./pages/user/AddUser";
 import EditUser from "./pages/user/EditUser";
 import Cart from "./pages/routePages/Cart";
+import Test from "./pages/routePages/Test";
 
 const App = () => {
   return (
@@ -18,6 +19,7 @@ const App = () => {
       <Routes>
         <Route element={<Navbar />}>
           <Route path="/" element={<Home />} />
+          <Route path="/test" element={<Test />} />
           <Route path="/login" element={<Login />} />
           {/* <Route path="/users" element={<UserList />} /> */}
           <Route path="/users" element={<ApiUserList />} />

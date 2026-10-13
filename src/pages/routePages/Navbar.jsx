@@ -56,6 +56,12 @@ const Navbar = () => {
           </li>
 
           <li>
+            <NavLink to="/test" style={navLinkStyle}>
+              Test
+            </NavLink>
+          </li>
+
+          <li>
             <NavLink to="/about" style={navLinkStyle}>
               About
             </NavLink>

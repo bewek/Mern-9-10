@@ -29,8 +29,8 @@ const ApiUserList = () => {
   };
 
   return (
-    <div className="user-page">
-      <div className="user-container">
+    <div className="min-h-screen bg-[#f5f7fb] p-10 box-border">
+      <div className="max-w-300 m-0 bg-white rounder-[12px] overflow-hidden shadow-xs">
         {/* Header */}
         <div className="user-header">
           <div>
